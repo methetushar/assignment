@@ -23,6 +23,11 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+    a.router-link-exact-active.router-link-active {
+        color: #23bd75 !important;
+    }
+    .v-toast__text{
+        color: #fff !important;
+    }
 </style>

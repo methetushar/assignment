@@ -27,12 +27,28 @@
                 </router-link>
             </li>
             <li class>
-                <a href="#">
+                <router-link :to="{name:'purchase.index'}">
                     <div class="icon_menu">
                         <img :src="$root.image_url+'menu-icon/6.svg'" alt>
                     </div>
                     <span>Purchase</span>
-                </a>
+                </router-link>
+            </li>
+            <li class>
+                <router-link :to="{name:'stock.index'}">
+                    <div class="icon_menu">
+                        <img :src="$root.image_url+'menu-icon/15.svg'" alt>
+                    </div>
+                    <span>Stock</span>
+                </router-link>
+            </li>
+            <li class>
+                <router-link :to="{name:'supplier.index'}">
+                    <div class="icon_menu">
+                        <img :src="$root.image_url+'menu-icon/12.svg'" alt>
+                    </div>
+                    <span>Suppliers</span>
+                </router-link>
             </li>
         </ul>
     </nav>

@@ -5,10 +5,10 @@
                 <div class="white_card_header">
                     <div class="box_header m-0">
                         <div class="main-title">
-                            <h2 class="m-0">Purchases</h2>
+                            <h2 class="m-0">Suppliers</h2>
                         </div>
                         <div class="add_button ms-2">
-                            <router-link :to="{name:'purchase.create'}" class="btn_1">Add New</router-link>
+                            <router-link :to="{name:'supplier.create'}" class="btn_1">Add New</router-link>
                         </div>
                     </div>
                 </div>
@@ -20,48 +20,39 @@
                                 <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Invoice Id</th>
-                                    <th>Supplier</th>
-                                    <th>Date</th>
-                                    <th>Subtotal</th>
-                                    <th>Tax</th>
-                                    <th>Discount</th>
-                                    <th>Total</th>
-                                    <th>Created</th>
-                                    <th>Actions</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Country</th>
+                                    <th width="15%">Action</th>
                                 </tr>
                                 </thead>
                                 <template v-if="!dataLoader">
-
                                     <tbody v-if="table.data && Object.keys(table.data).length > 0">
-                                    <tr v-for="(item,key) in table.data" :key="key">
-                                        <td>{{ key + 1}}</td>
-                                        <td>{{ item.invoice_id }}</td>
-                                        <td>{{ item.supplier ? item.supplier.name : '-' }}</td>
-                                        <td>{{ item.purchase_date}}</td>
-                                        <td>{{ item.subtotal }}</td>
-                                        <td>{{ item.tax }}</td>
-                                        <td>{{ item.discount }}</td>
-                                        <td>{{ item.total }}</td>
-                                        <td>{{ item.created_at }}</td>
+                                    <tr v-for="(supplier,index) in table.data" :key="index">
+                                        <td>{{ index + 1}}</td>
+                                        <td>{{ supplier.name }}</td>
+                                        <td>{{ supplier.email }}</td>
+                                        <td>{{ supplier.phone }}</td>
+                                        <td>{{ supplier.country }}</td>
                                         <td>
                                             <a href="#" class="btn btn-success btn-sm text-white rounded"><i
                                                 class="ti-eye"></i></a>
-                                            <router-link :to="{name:'purchase.edit',params:{id:item.id}}"
+                                            <router-link :to="{name:'supplier.edit',params:{id:supplier.id}}"
                                                          class="btn btn-info btn-sm text-white">
                                                 <i class="ti-pencil-alt"></i>
                                             </router-link>
-                                            <a href="javascript:" @click="remove(item.id)"
+                                            <a href="javascript:" @click="remove(supplier.id)"
                                                class="btn btn-danger btn-sm text-white">
                                                 <i class="ti-trash"></i>
                                             </a>
                                         </td>
                                     </tr>
                                     </tbody>
-                                    <Nodatafound v-else colspan="10"></Nodatafound>
+                                    <Nodatafound v-else colspan="6"></Nodatafound>
                                 </template>
                                 <template v-else>
-                                    <DataLoader colspan="10"></DataLoader>
+                                    <DataLoader colspan="6"></DataLoader>
                                 </template>
                             </table>
                         </div>
@@ -82,18 +73,29 @@
         components: {Pagination, SearchConpnent},
         data() {
             return {
-                dataLoader:false,
-                paginate_route:'purchase.index',
+                dataLoader: false,
+                paginate_route: 'supplier.index',
                 pagination: 10,
                 keyword: '',
                 table: {},
             }
         },
-
         methods: {
             get() {
-                this.paginate_data('/purchase')
+                this.paginate_data('/supplier')
             },
+            remove(id) {
+                if (confirm('Are you sure you want to delete this item?')) {
+                    axios.delete('/supplier/' + id).then(res => {
+                        if (res) {
+                            this.$toast.success(res.data.message);
+                            this.get();
+                        }
+                    }).catch(error => {
+                        console.log(error)
+                    })
+                }
+            }
         },
         mounted() {
             this.get();

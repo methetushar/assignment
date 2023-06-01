@@ -22,13 +22,21 @@
             align-items: center;
             height: 100vh;
         }
+        body{
+            background: url({{ asset('assets/img/frontend-app-bg.png') }});
+        }
+        .card {
+            background: #88b6de03;
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <div class="col-md-4 mt-0">
-            <div class="card rounded-4 shadow-sm border-0 p-4">
+            <div class="card rounded-4 shadow-lg border-0 p-4">
                 <div class="card-header bg-transparent border-0 text-center pt-5">
                     <h3>Admin Login</h3>
                 </div>

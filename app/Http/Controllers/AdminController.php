@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    public function dashboard()
+    public function __invoke()
     {
-        return view('layouts.app');
+        $authenticated = Auth::check();
+        $loggedin_user = Auth::user();
+        return view('layouts.app',compact('authenticated', 'loggedin_user'));
     }
 }

@@ -5,9 +5,12 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="base-url" content="{{ URL::to('/') }}"/>
     <script>
-        window.laravel = {
+        window['application'] = {
             csrfToken: '{{ csrf_token() }}',
-            baseurl: '{{ URL::to('/') }}'
+            baseurl: '{{ url('/') }}',
+            logout_url: '{{ route('logout',['session' => session('user_session_id')]) }}',
+            is_authenticated: "{{ auth()->check() }}",
+            loggedin_user: '{!! json_encode(auth()->user()) !!}'
         }
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -36,7 +39,6 @@
 
     <script src="{{ asset('assets/js/jquery1-3.4.1.min.js') }}"></script>
     <script src="{{ asset('assets/js/popper1.min.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.min.html') }}"></script>
     <script src="{{ asset('assets/js/metisMenu.js') }}"></script>
 {{--    <script src="{{ asset('assets/js/dashboard_init.js') }}"></script>--}}
     <script src="{{ asset('assets/js/custom.js') }}"></script>
