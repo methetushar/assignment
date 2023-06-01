@@ -15,13 +15,17 @@ Copy .env.example
 
 composer install
 
-# Install npm dependencies
-
-Run: npm install & npm run dev
-
 # Generate app key
 
 php artisan key:generate
+
+# Database migration
+
+php artisan migrate:fresh --seed
+
+# Install npm dependencies
+
+Run: npm install & npm run dev
 
 # Storage Link
 
@@ -32,3 +36,8 @@ php artisan storage:link
 php artisan serve
 
 # Finished
+
+## Admin Login Credential
+
+<p>Email: admin@gmail.com</p>
+<p>Password: 123456</p>
