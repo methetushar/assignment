@@ -30,11 +30,7 @@
   <link rel="stylesheet" href="{{ asset('assets/css/colors/default.css') }}" id="colorSkinCSS">
   <style>
   body {
-    background: url({{ asset('assets/img/frontend-app-bg.png')
-  }
-  }
-
-  );
+    background: url('{{ asset('assets/img/frontend-app-bg.png')}}');
   }
 
   .frontend-app {
