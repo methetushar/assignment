@@ -15,6 +15,14 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('supplier_id')->constrained();
+            $table->string('name');
+            $table->string('sku');
+            $table->decimal('price',8,2);
+            $table->string('unit');
+            $table->string('image')->nullable();
+            $table->longText('description')->nullable();
+            $table->enum('status',['active','inactive'])->default('active');
             $table->timestamps();
         });
     }
